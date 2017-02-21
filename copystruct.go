@@ -11,8 +11,12 @@ func copystruct(aa interface{}, bb interface{}) { //aa,bb为2个struct指针，�
 	if !(atype.Kind() == reflect.Ptr && btype.Kind() == reflect.Ptr) {
 		return
 	}
+
 	at := atype.Elem()
 	bt := btype.Elem()
+	if at.Name()[0] < 65 || at.Name()[0] > 90 || bt.Name()[0] < 65 || bt.Name()[0] > 90 {
+		return
+	}
 	ai := at.NumField()
 	bi := bt.NumField()
 	for jj := 0; jj < ai; jj++ {
